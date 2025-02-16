@@ -19,6 +19,8 @@ This experimental extension is used to integrate a Bazel project with the [Kotli
 
 ## Usage
 
+You can use the example Bazel repository [here](https://github.com/srmocher/micronaut-kapt-ksp) with this extension to view some of the features.
+
 Right-click on a directory and select "Bazel/Kotlin Sync". This will trigger a bazel build and activate the language server.
 
 <img width="1161" alt="image" src="https://github.com/user-attachments/assets/5a65d23b-1d35-4238-8a8d-c09fa81bdbac" />
@@ -45,3 +47,9 @@ Also has support for showing KDoc.
 - `srmocher.kotlinLanguageServer.enabled`: Whether to enable the language server.
 - `srmocher.kotlinLanguageServer.languageServerVersion`: The version of the language server to use. Defaults to `v1.3.14-bazel` for now.
 - `srmocher.kotlinLanguageServer.jvmOpts`: The JVM options to use when starting the language server.
+
+## Limitations/Constraints
+- Bazel 6.5.0 is supported and tested. bzlmod is not yet supported but there are plans to add this.
+- You need to use [rules_jvm_external](https://github.com/bazel-contrib/rules_jvm_external) and setup a default `@maven` repo including `org.ow2.asm:asm` and `com.google.code.gson:gson` as artifacts along with `fetch_sources = True`. This is currently required as we collect some source metadata during a `bazle build` using a tool and that tool is currently built from source. This is to be moved to a binary so as to avoid needing to compile from sourcde.
+- You also need to be using [rules_kotlin](https://github.com/bazelbuild/rules_kotlin) in your workspace with the repo name being `io_bazel_rules_kotlin`. This is used in a Bazel aspect that the LSP/extension leverages.
+- Some Kotlin-specific features (Go-to on extension functions, typealiases) don't work very well. There are plans to make some improvements here.
