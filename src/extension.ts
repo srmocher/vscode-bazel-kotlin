@@ -92,7 +92,7 @@ export async function activate(context: vscode.ExtensionContext) {
 			const relativePath = path.relative(currentDir, uri.fsPath);
 
 			const aspectOverrideArg = `--override_repository=srmocher_kotlin_lsp="${lspSourcePath}"`;
-			const aspectArgs: string[] = [aspectOverrideArg, '--aspects=@srmocher_kotlin_lsp//bazel:kotlin_lsp_info.bzl%kotlin_lsp_aspect', '--output_groups=+lsp_infos'];
+			const aspectArgs: string[] = [aspectOverrideArg, '--aspects=@srmocher_kotlin_lsp//bazel/aspect:kotlin_lsp_info.bzl%kotlin_lsp_aspect', '--output_groups=+lsp_infos'];
 			// First, query for kt_jvm_library targets
 			const queryCmd = `bazel query 'kind("kt_jvm_library", //${relativePath}/...)'`;
 			outputChannel.appendLine(`Finding Kotlin targets: ${queryCmd}`);

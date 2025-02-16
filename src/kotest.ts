@@ -131,7 +131,7 @@ export class KotestTestController {
                 }
 
                 run.appendOutput(`\n--- Running test: ${test.label} ---\n`);
-                const command = `bazel test --test_output=all --color=yes --curses=no --show_progress_rate_limit=5 ${targets} ${testFilter}`;
+                const command = `bazel test --test_output=all --color=yes --curses=no ${targets} ${testFilter}`;
                 run.appendOutput(`Command: ${command}\n\n`);
 
                 const bazelProcess = cp.exec(command, { 
