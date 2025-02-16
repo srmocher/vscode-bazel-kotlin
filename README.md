@@ -1,71 +1,32 @@
-# bazel-kotlin-vscode-extension README
+# vscode-bazel-kotlin README
+[![Bazel][bazel-img]][bazel-url] [![Kotlin][kotlin-img]][kotlin-url] [![VSCode][vscode-img]][vscode-url]
 
-This is the README for your extension "bazel-kotlin-vscode-extension". After writing up a brief description, we recommend including the following sections.
+[bazel-img]: https://img.shields.io/badge/build%20with-Bazel-43A047.svg
+[bazel-url]: https://bazel.build
+[kotlin-img]: https://img.shields.io/badge/kotlin-%237F52FF.svg?style=flat&logo=kotlin&logoColor=white
+[kotlin-url]: https://kotlinlang.org
+[vscode-img]: https://img.shields.io/badge/VSCode-0078D4?style=flat&logo=visual%20studio%20code&logoColor=white
+[vscode-url]: https://code.visualstudio.com
+
+This extension is used to integrate a Bazel project with the [Kotlin language server](https://github.com/srmocher/kotlin-language-server-bazel). It's still early and work-in-progress.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Automatically download the language server and keep it up to date.
+- Sync Bazel packages on demand, and notify the language server
+- Support auto-completion, Go-to-defintion, hover with source jars.
+- Test explorer integration for Kotest based tests written with `DescribeSpec` style.
 
-For example if there is an image subfolder under your extension project workspace:
+## Usage
 
-\!\[feature X\]\(images/feature-x.png\)
+Right-click on a directory and select "Bazel/Kotlin Sync". This will trigger a bazel build and activate the language server.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+![image](./resources/usage.png)
 
-## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
 
-## Extension Settings
+## Configuration options
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+- `srmocher.kotlinLanguageServer.enabled`: Whether to enable the language server.
+- `srmocher.kotlinLanguageServer.languageServerVersion`: The version of the language server to use. Defaults to `v0.0.1-rc` for now.
+- `srmocher.kotlinLanguageServer.jvmOpts`: The JVM options to use when starting the language server.
